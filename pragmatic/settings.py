@@ -11,11 +11,19 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os,environ 
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-
+# reading .env file
+environ.Env.read_env(
+    env_file= os.path.join(BASE_DIR, '.env')
+    # env_file = './.env'
+)
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
@@ -37,13 +45,9 @@ CACHES = {
     'redis': env.cache('REDIS_URL')
 }
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# reading .env file
-environ.Env.read_env(
-    env_file= os.path.join(BASE_DIR, '.env')
-)
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -84,7 +88,7 @@ ROOT_URLCONF = 'pragmatic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
