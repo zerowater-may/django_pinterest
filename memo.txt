@@ -9,3 +9,4 @@ template
 -> model 장고랑 DB랑 연결을 편리하게 해주는것 ( 장고의 장점 DB를 별로 신경안써도됨)
 -> View 장고에서 계산하는 부분 
 -> Template 실질적 프론트엔드 User Interface 동적으로 가능 템플릿에서 for 문 가능 
+d
