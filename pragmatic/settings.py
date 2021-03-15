@@ -10,18 +10,47 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
+import os,environ 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+# False if not in os.environ
+DEBUG = env('DEBUG')
+
+# Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
+SECRET_KEY = env('SECRET_KEY')
+
+# Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
+DATABASES = {
+    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
+    'default': env.db(),
+    # read os.environ['SQLITE_URL']
+    'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
+}
+
+CACHES = {
+    # read os.environ['CACHE_URL'] and raises ImproperlyConfigured exception if not found
+    'default': env.cache(),
+    # read os.environ['REDIS_URL']
+    'redis': env.cache('REDIS_URL')
+}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# reading .env file
+environ.Env.read_env(
+    env_file= os.path.join(BASE_DIR, '.env')
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5nb@rlfrak967e6#g4pr)8&s2tf*zsquyhbh7_x52d@7g+__+@'
-
+# SECRET_KEY = '5nb@rlfrak967e6#g4pr)8&s2tf*zsquyhbh7_x52d@7g+__+@'
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -37,6 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accountapp'
 ]
 
 MIDDLEWARE = [
