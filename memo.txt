@@ -1,3 +1,7 @@
+:tip
+.git/index.loc exists error => open terminal  < rm -f ./.git/index.lock >  del this file :)
+
+
 4강
 MVC 란 ?
 model 
