@@ -1,6 +1,7 @@
 :tip
 .git/index.loc exists error => open terminal  < rm -f ./.git/index.lock >  del this file :)
-
+python manage.py makemigrations # DB
+python manage.py migrate # DB생성하고할것 
 
 4강
 MVC 란 ?
@@ -23,3 +24,21 @@ push
 pull
 branch
 checkout
+
+12강 - css 
+
+width , height - 값은 고정값
+em - 부모값이 커지면 같이 커짐 .5x 단점 (부모가 여러개일경우 부모곱을 더한거 만큼 커짐)
+rem - root HTML 의 default font-size 가 따라감 
+% - 바로위의 부모만 받음 
+
+1rem = 16px 
+3rem = 3*16 = 48px
+
+style="display: block;" = > 너비를 다가져감
+inline block= 딱 크기대로
+inline = 텍스트만 감쌀정도
+default = block이랑 같음
+None은 안보임
+
+span태그는 기본속성이 inline
