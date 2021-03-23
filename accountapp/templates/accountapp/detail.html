@@ -2,6 +2,7 @@
 {% load bootstrap4 %}
 
 {% block content %}
+<div>
     <div style="text-align: center; max-width:500px; margin: 4rem auto;">
         <p>
             {{ target_user.date_joined }}
@@ -9,5 +10,13 @@
         <h2 style="font-family: NanumSquareOTFRegular;">
             {{ target_user.username }}
         </h2>
+        {% if target_user == user %}
+        <a href="{% url 'accountapp:update' pk=user.pk%}">
+            <p>
+                Change Info
+            </p>
+        </a>
+        {% endif %}
     </div>
+</div>
 {% endblock %}

@@ -3,10 +3,10 @@ from django.http import HttpResponse , HttpResponseRedirect
 # Create your views here.
 from django.urls import reverse , reverse_lazy
 from accountapp.models import HelloWorld
-from django.views.generic import CreateView ,DetailView
+from django.views.generic import CreateView ,DetailView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from .forms import AccountUpdateForm
 
 def hello_world(request):  
     if request.method == "POST":
@@ -33,3 +33,9 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = AccountUpdateForm
+    success_url = reverse_lazy('accountapp:hello_world') #클래스에서는 reverse_lazy를 씀 . 함수에서는 reverse
+    template_name = 'accountapp/update.html'
