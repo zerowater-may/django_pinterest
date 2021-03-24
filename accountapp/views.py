@@ -38,8 +38,8 @@ class AccountCreateView(CreateView):
     success_url = reverse_lazy('accountapp:hello_world') #클래스에서는 reverse_lazy를 씀 . 함수에서는 reverse
     template_name = 'accountapp/create.html'
 
-@method_decorator(has_owner_ship, 'get') ## 클래스에서 로그인햇는지 확인하는것 
-@method_decorator(has_owner_ship, 'post')
+# @method_decorator(has_owner_ship, 'get') ## 클래스에서 로그인햇는지 확인하는것 
+# @method_decorator(has_owner_ship, 'post')
 class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
