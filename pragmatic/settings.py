@@ -71,8 +71,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accountapp',
     'bootstrap4',
+    'accountapp',
+    'profileapp',
 ]
 
 MIDDLEWARE = [
@@ -168,6 +169,7 @@ from django.urls import  reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/' 
+# 127.0.0.1:8000/media/test.jpg
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
