@@ -7,21 +7,34 @@
         <p>
             {{ target_user.date_joined }}
         </p>
-
+        
+        
+        {% if target_user.profile %}
         <img src=" {{ target_user.profile.image.url }}" alt=""
         style="height: 8rem; width: 8rem; border-radius: 10rem; margin-bottom: 2rem;">
 
-        {% if target_user.profile %}
         <h2 style="font-family: NanumSquareOTFRegular;">
             {{ target_user.profile.nickname }}
-            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
+                {% if target_user == user %}
+                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
+                {% endif %}
+
         </h2>
+        <h5>
+            {{ target_user.profile.message }}
+        </h5>
         {% else %}
-        <a href="{% url 'profileapp:create' %}">
-            <h2 style="font-family: NanumSquareOTFRegular;">
-            Create Profile
-            </h2>
-        </a>
+            {% if target_user == user %}
+            <a href="{% url 'profileapp:create' %}">
+                <h2 style="font-family: NanumSquareOTFRegular;">
+                Create Profile
+                </h2>
+            </a>
+             
+            {% else %}
+            <h4>죄송합니다. 페이지를 사용할 수 없습니다.</h4>
+            <h6>클릭하신 링크가 잘못되었거나 페이지가 삭제되었습니다.</h6><a href="{% url 'accountapp:hello_world' %}">홈으로 돌아가기.</a>
+            {% endif %}
         {% endif %}
 
         {% if target_user == user %}
