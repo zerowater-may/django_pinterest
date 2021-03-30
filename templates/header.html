@@ -1,27 +1,32 @@
-
+<style>
+    a {
+        color:black;
+    }
+</style>
 <div class="zerowater_header">
     <div>
         <h1 class=zerowater_logo>ZEROWATER</h1>
     </div>
-    <div>
-        <a href="{% url 'articleapp:list' %}">
+    <div class="zerowater_header_nav">
+        <a href="{% url 'articleapp:list' %}" class="zerowater_header_nav">
             <span>Articles</span>
         </a>
-        <span>nav2</span>
-        <span>nav3</span>
+        <a href="{% url 'projectapp:list' %}" class="zerowater_header_nav">
+            <span>Project</span>
+        </a>   
         {% if not user.is_authenticated %}
         <!-- next 이걸해주면 원래 경로로 다시 되돌아옴 -->
-        <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="zerowater_header_nav">
             <span>Login</span>
         </a>
-        <a href="{% url 'accountapp:create' %}?next={{ request.path }}">
+        <a href="{% url 'accountapp:create' %}?next={{ request.path }}" class="zerowater_header_nav">
             <span>Sign Up</span>
         </a>
         {% else %}
-        <a href="{% url 'accountapp:detail' pk=user.pk %}">
+        <a href="{% url 'accountapp:detail' pk=user.pk %}" class="zerowater_header_nav">
             <span>MyPage</span>
         </a>
-        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
+        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="zerowater_header_nav">
             <span>Logout</span>
         </a>
         {% endif %}
