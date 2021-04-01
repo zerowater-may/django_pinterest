@@ -2,11 +2,12 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView ,ListView
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 from projectapp.models import Project
 from .models import Subscription
+from articleapp.models import Article
 
 
 @method_decorator(login_required,'get')
@@ -28,4 +29,14 @@ class SubscriptionView(RedirectView):
 
         return super(SubscriptionView , self).get(request,*args,**kwargs)
 
+@method_decorator(login_required,'get')
+class SubscriptionListView(ListView):
+    model =Article
+    context_object_name = 'article_list'
+    template_name = 'subscribeapp/list.html'
+    paginate_by = 5
 
+    def get_queryset(self):
+        projects = Subscription.objects.filter(user=self.request.user).values_list('project')## 프로젝트로 리스트화
+        article_list = Article.objects.filter(project__in=projects)
+        return article_list

@@ -14,6 +14,9 @@
         <a href="{% url 'projectapp:list' %}" class="zerowater_header_nav">
             <span>Project</span>
         </a>   
+        <a href="{% url 'subscribeapp:list' %}" class="zerowater_header_nav">
+            <span>Subscription</span>
+        </a>   
         {% if not user.is_authenticated %}
         <!-- next 이걸해주면 원래 경로로 다시 되돌아옴 -->
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="zerowater_header_nav">
