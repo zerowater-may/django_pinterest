@@ -15,9 +15,7 @@
 
         <h2 style="font-family: NanumSquareOTFRegular;">
             {{ target_user.profile.nickname }}
-                {% if target_user == user %}
-                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
-                {% endif %}
+
 
         </h2>
         <h5>
@@ -33,20 +31,24 @@
              
             {% else %}
             <h4>죄송합니다. 페이지를 사용할 수 없습니다.</h4>
-            <h6>클릭하신 링크가 잘못되었거나 페이지가 삭제되었습니다.</h6><a href="{% url 'accountapp:hello_world' %}">홈으로 돌아가기.</a>
+            <h6>클릭하신 링크가 잘못되었거나 페이지가 삭제되었습니다.</h6><a href="{% url 'accountapp:home' %}">홈으로 돌아가기.</a>
             {% endif %}
         {% endif %}
 
         {% if target_user == user %}
-        <a href="{% url 'accountapp:update' pk=user.pk %}">
-            <p>
-                Change Info
-            </p>
+        <a class="material-icons"
+            style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+            href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
+
+        <a class="material-icons"
+            style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+            href="{% url 'accountapp:update' pk=user.pk %}">
+            settings
         </a>
-        <a href="{% url 'accountapp:delete' pk=user.pk %}">
-            <p>
-                Quit
-            </p>
+        <a class="material-icons"
+            style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
+            href="{% url 'accountapp:delete' pk=user.pk %}">
+            cancel
         </a>
         {% endif %}
     </div>

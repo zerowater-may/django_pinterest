@@ -170,7 +170,7 @@ STATICFILES_DIRS = [
 ]
 
 from django.urls import  reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
+LOGIN_REDIRECT_URL = reverse_lazy('accountapp:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 MEDIA_URL = '/media/' 
