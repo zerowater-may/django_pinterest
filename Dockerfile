@@ -6,11 +6,7 @@ RUN git clone https://github.com/zerowater-may/django_pinterest.git
 
 WORKDIR /home/
 
-RUN ls
-
 WORKDIR /home/django_pinterest/
-
-RUN ls
 
 RUN pip install -r requirements.txt
 
