@@ -18,32 +18,13 @@ environ.Env.read_env(
     env_file= os.path.join(BASE_DIR, '.env')
     # env_file = './.env'
 )
-# False if not in os.environ
-DEBUG = env('DEBUG')
 
-# Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-SECRET_KEY = env('SECRET_KEY')
-
-# Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
-# DATABASES = {
-#     # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
-#     'default': env.db(),
-#     # read os.environ['SQLITE_URL']
-#     'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# CACHES = {
-#     # read os.environ['CACHE_URL'] and raises ImproperlyConfigured exception if not found
-#     'default': env.cache(),
-#     # read os.environ['REDIS_URL']
-#     'redis': env.cache('REDIS_URL')
-# }
 
 
 
@@ -53,8 +34,8 @@ DATABASES = {
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5nb@rlfrak967e6#g4pr)8&s2tf*zsquyhbh7_x52d@7g+__+@'
-# SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
+# SECRET_KEY = '5nb@rlfrak967e6#g4pr)8&s2tf*zsquyhbh7_x52d@7g+__+@'
+SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -69,8 +50,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'zerowater',
         'USER': 'zerowater',
-        # 'PASSWORD': read_secret('MYSQL_PASSWORD'),
-        'PASSWORD': 'fkaustkfl123!',
+        'PASSWORD': read_secret('MYSQL_PASSWORD'),
+        # 'PASSWORD': 'fkaustkfl123!',
         'HOST': 'mariadb',
         'PORT': '3306',
     }
