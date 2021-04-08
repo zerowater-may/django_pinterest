@@ -1,5 +1,13 @@
 from .base import *
 
+
+def read_secret(secret_name):
+    with open('/run/secrets/' + secret_name) as f:
+        secret = f.read().rstrip().lstrip()
+
+    return secret
+    
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -45,7 +53,7 @@ DATABASES = {
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '5nb@rlfrak967e6#g4pr)8&s2tf*zsquyhbh7_x52d@7g+__+@'
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -60,7 +68,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'zerowater',
         'USER': 'zerowater',
-        'PASSWORD': 'fkaustkfl123!',
+        'PASSWORD': read_secret('MYSQL_PASSWORD'),
         'HOST': 'mariadb',
         'PORT': '3306',
     }
