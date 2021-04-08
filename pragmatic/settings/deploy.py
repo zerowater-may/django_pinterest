@@ -2,9 +2,10 @@ from .base import *
 
 
 def read_secret(secret_name):
-    with open('/run/secrets/' + secret_name) as f:
-        secret = f.read().rstrip().lstrip()
-
+    file = open('/run/secrets/' + secret_name)
+    secret = file.read()
+    secret = secret.rstrip().lstrip()
+    file.close()
     return secret
     
 
@@ -53,7 +54,7 @@ DATABASES = {
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '5nb@rlfrak967e6#g4pr)8&s2tf*zsquyhbh7_x52d@7g+__+@'
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
