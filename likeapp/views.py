@@ -14,7 +14,6 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db import transaction
 # from django.contrib.messages import message
-
 @transaction.atomic
 def db_transaction(user, article):
 
@@ -45,3 +44,5 @@ class LikeArticleView(RedirectView):
             return HttpResponseRedirect(reverse('articleapp:detail' , kwargs={'pk':kwargs['pk']}))
 
         return super(LikeArticleView, self).get(self.request , *args, **kwargs)
+
+
