@@ -1,3 +1,10 @@
-<div>
-    <img src="{{ article.image.url }}" alt="">
-</div>
+
+<p style="text-align: center;"><img src="{{ article.image.url }}" alt="display:block;">
+    <i style="vertical-align: middle; font-size: 1.2rem; color: #f77" 
+    class="material-icons">
+    favorite
+    </i>
+    <span style="vertical-align: middle;">
+        {{ article.like }}
+    <span>
+</p>

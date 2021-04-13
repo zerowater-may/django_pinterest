@@ -4,3 +4,7 @@ db.sqlite3
 __pycache__/
 .vscode/
 db.sqlite3/
+Dockerfile
+nginx.conf
+docker-compose.yml
+docker-compose:1.yml
