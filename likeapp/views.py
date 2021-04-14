@@ -17,7 +17,7 @@ from django.db import transaction
 @transaction.atomic
 def db_transaction(user, article):
 
-    article.like += randint(1,200)
+    article.like += randint(1,300)
     article.save()
 
     if LikeRecord.objects.filter(user=user,article=article).exists():
